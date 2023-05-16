@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: pixeltime
+    url: jdbc:mysql://localhost:3306/neo
+  jpa:
+    database: mysql
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update

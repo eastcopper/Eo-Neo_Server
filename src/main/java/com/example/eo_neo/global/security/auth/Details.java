@@ -55,3 +55,4 @@ public class Details implements UserDetails {
         return false;
     }
 }
+
