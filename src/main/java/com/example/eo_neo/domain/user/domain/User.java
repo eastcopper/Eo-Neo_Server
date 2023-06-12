@@ -18,6 +18,18 @@ public class User {
     private String password;
 
     @Setter
+    private int CorrectBasic;
+
+    @Setter
+    private int CorrectLanguage;
+
+    @Setter
+    private int CorrectConversation;
+
+    @Setter
+    private int CorrectWord;
+
+    @Setter
     private String nickName;
 
     @Builder
@@ -25,5 +37,9 @@ public class User {
         this.accountId = accountId;
         this.password = password;
         this.nickName = nickName;
+        this.CorrectBasic = 0;
+        this.CorrectConversation = 0;
+        this.CorrectLanguage  = 0;
+        this.CorrectWord = 0;
     }
 }

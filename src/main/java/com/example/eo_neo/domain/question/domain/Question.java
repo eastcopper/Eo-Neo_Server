@@ -6,9 +6,8 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +25,11 @@ public class Question {
 
     @Column(nullable = false)
     private String correct;
+
+    public Question(QuestionCategory category, String problem, List<String> answer, String correct) {
+        this.category = category;
+        this.problem = problem;
+        this.answer = answer;
+        this.correct = correct;
+    }
 }

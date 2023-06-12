@@ -12,4 +12,12 @@ public class UserInfoResponse {
     private final String accountId;
 
     private final String nickName;
+
+    private final int CorrectBasic;
+
+    private final int CorrectLanguage;
+
+    private final int CorrectConversation;
+
+    private final int CorrectWord;
 }

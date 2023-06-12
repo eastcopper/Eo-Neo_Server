@@ -1,5 +1,6 @@
 package com.example.eo_neo.domain.auth.service;
 
+import com.example.eo_neo.domain.auth.exception.UserNotFoundException;
 import com.example.eo_neo.domain.auth.presentation.dto.request.SignUpRequest;
 import com.example.eo_neo.domain.auth.presentation.dto.response.TokenResponse;
 import com.example.eo_neo.domain.user.domain.User;
@@ -34,10 +35,10 @@ public class AuthService {
 
     public TokenResponse login(SignUpRequest request) {
         // userRepository에서 id를 찾아 user 객체 반환 >> 없으면 예외 처리 날리기
-        User user = userRepository.findByAccountId(request.getAccountId()).orElseThrow(RuntimeException::new);
+        User user = userRepository.findByAccountId(request.getAccountId()).orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         // 요청받은 password와 user의 암호화된 password를 matches로 비교 >> 틀리면 예외 처리
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) throw new RuntimeException();
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) throw UserNotFoundException.EXCEPTION;
 
         // accessToken과 refreshToken 반환
         return TokenResponse.builder()

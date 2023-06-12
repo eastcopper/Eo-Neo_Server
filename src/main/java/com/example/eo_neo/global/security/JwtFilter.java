@@ -19,7 +19,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         String token = parseRequest(request);
-        if (!token.isEmpty()) {
+        if (token!=null) {
             // 시큐리티 콘텍스트에 Authentication을 저장한다.
             SecurityContextHolder.getContext().setAuthentication(jwtProvider.generatAuthentication(token));
         }

@@ -18,7 +18,8 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 암호화할 때 사용될 시큐리티 키
+//    private final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 암호화할 때 사용될 시큐리티 키
+    private final Key secretKey = Keys.hmacShaKeyFor("b.anakfbasidofp9dfbo8qiveoifvaosvdfoiqvwoivfiahfkbasilvfasl".getBytes());
 
     private final DetailsService detailsService;
 
@@ -30,11 +31,11 @@ public class JwtProvider {
     }
 
     public Claims parseToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJwt(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
     }
 
     public String accessTokenGenerator(String accountId) {
-        return generateToken(accountId, "access", 1800L);
+        return generateToken(accountId, "access", 180000000L);
     }
 
     public String refreshTokenGenerator(String accountId) {
